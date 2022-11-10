@@ -18,7 +18,7 @@ const Player = ({ src }) => {
     };
 
     return (
-        <div className="container">
+        <div>
             <h1>Fools Garden: Lemon Tree</h1>
             <audio ref={playingRef} src={src}></audio>
             <div className="player-controls">
