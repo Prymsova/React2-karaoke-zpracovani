@@ -17,3 +17,16 @@
 namísto správného:
 `const currentLineRef = useRef();`
 
+## třetí část - propojení playeru s lyrics
+- na audio přiřazení události onTimeUpdate - nejde o metodu, takže se to nedává na ten current refu, ale normálně jako jiné události (onClick atp.) přímo do toho elementu
+- callback prop do přehrávače - tzn. že v index.jsx pro app do komponenty Player přidáme atribut onTimeUpdate, a aby výsledkem už byla ta hodnota aktuálního času, tedy e.target.currentTime, tak to uděláme takto:
+v App:
+`<Player src={srcSong} onTimeUpdate={handleTimeUpdate}/>`
+a nad tím
+`const handleTimeUpdate = (currentTime) => {`
+    `console.log(currentTime);`
+ ` };`
+
+v Player v props je onTimeUpdate callback, u elementu audio pak:
+`onTimeUpdate={(event) => onTimeUpdate(event.target.currentTime)}`
+//namísto onTimeUpdate={onTimeUpdate}//

@@ -7,11 +7,17 @@ const Lyrics = ({ lines, currentLineIndex }) => {
 
     useEffect(() => {
         //console.log(currentLineRef)
-        currentLineRef.current.scrollIntoView({
-            block: 'start',
-            inline: 'nearest',
-            behavior: 'smooth',
-        })
+
+        // jelikož při zahájení písničky nechceme mít označený žádný řádek, tak initial index -1, ale aby to tady neházelo chybu, tak nutné dát podmínku že v takovém případě se nemá nic stát (ukončí se podmínka tím returnem)
+        if(currentLineIndex === -1) {
+            return;
+        } else {
+            currentLineRef.current.scrollIntoView({
+                block: 'start',
+                inline: 'nearest',
+                behavior: 'smooth',
+            })
+        }
     }, [currentLineIndex]);
     
     return (
